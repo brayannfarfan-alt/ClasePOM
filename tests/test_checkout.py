@@ -3,7 +3,7 @@ from pages.login_page import LoginPage
 from pages.checkout_page import CheckoutPage
 from data.users import USERS
 from data.checkout_data import usuarios_checkout
-import time
+# import time
 @pytest.mark.parametrize("username, password", USERS)
 @pytest.mark.parametrize("checkout_data",usuarios_checkout )
 
