@@ -2,6 +2,10 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from faker import Faker
+
+
+fake = Faker()
 
 class CheckoutPage:
 
@@ -20,7 +24,7 @@ class CheckoutPage:
     
     def __init__(self,driver):
         self.driver = driver
-        self.wait = WebDriverWait(driver,10)
+        self.wait = WebDriverWait(driver,30)
 
 
     def agregar_producto(self):
@@ -32,22 +36,34 @@ class CheckoutPage:
     def iniciar_carrito(self):
         self.driver.find_element(*self.CHECKOUT_BUTTON).click()
 
-    def completar_formulario(self,usuario):
+    def completar_formulario(self):
+
+
+        #LLAMAR A LOS METODOS QUE QUERRAMOS
+
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        postal_codes = fake.postalcode()
+
+        print(first_name, last_name, postal_codes)
+  
+
+
         # con esto anda
-        self.driver.find_element(*self.FIRT_NAME).send_keys(usuario["first_name"])
-        self.driver.find_element(*self.LAST_NAME).send_keys(usuario["last_name"])
-        self.driver.find_element(*self.POSTAL_CODE).send_keys(usuario["postal_code"])
+        # self.driver.find_element(*self.FIRT_NAME).send_keys(first_name)
+        # self.driver.find_element(*self.LAST_NAME).send_keys(last_name)
+        # self.driver.find_element(*self.POSTAL_CODE).send_keys(postal_codes)
 
         # CON ESTO TAMBIEN Y SERIA MAS PROFESIONAL
-        # self.wait.until(
-        #     EC.presence_of_element_located(self.FIRT_NAME)
-        # ).send_keys(usuario["first_name"])
-        # self.wait.until(
-        #     EC.presence_of_element_located(self.LAST_NAME)
-        # ).send_keys(usuario["last_name"])
-        # self.wait.until(
-        #     EC.presence_of_element_located(self.POSTAL_CODE)
-        # ).send_keys(usuario["postal_code"])
+        self.wait.until(
+            EC.presence_of_element_located(self.FIRT_NAME)
+        ).send_keys(first_name)
+        self.wait.until(
+            EC.presence_of_element_located(self.LAST_NAME)
+        ).send_keys(last_name)
+        self.wait.until(
+            EC.presence_of_element_located(self.POSTAL_CODE)
+        ).send_keys(postal_codes)
 
 
     def continuar(self):
