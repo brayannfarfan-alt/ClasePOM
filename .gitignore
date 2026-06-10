@@ -1,7 +1,7 @@
-/__pycache__
-/.pytest_cache
-/data/__pycache__
-/pages/__pycache__
-/tests/__pycache__
-/utils/__pycache__
-/screenshots
+__pycache__/
+.pytest_cache/
+data/__pycache__/
+pages/__pycache__/
+tests/__pycache__/
+utils/__pycache__/
+screenshots/
